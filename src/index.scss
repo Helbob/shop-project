@@ -14,3 +14,24 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+img {
+  width: 100%;
+}
+
+.App {
+  display: grid;
+  grid-template-columns: auto 200px;
+}
+.Header {
+  background-color: rgb(174, 134, 226);
+  grid-column: 1/-1;
+}
+.Products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  .Product {
+  }
+}
+.Basket {
+}
