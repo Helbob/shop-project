@@ -5,6 +5,24 @@ import Basket from "./components/Basket";
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
+  function addToCart(data) {
+    //Have the product
+    if (cart.find((item) => item.id === data.id)) {
+      setCart((oldCart) =>
+        oldCart.map((item) => {
+          if (item.id !== data.id) {
+            return item;
+          }
+          const copy = { ...item };
+          copy.amount = copy.amount + 1;
+          return copy;
+        })
+      );
+    } else {
+      setCart((oldCart) => oldCart.concat({ ...data, amount: 1 }));
+    }
+  }
 
   useEffect(() => {
     async function getData() {
@@ -17,8 +35,8 @@ function App() {
   return (
     <div className="App">
       <Header></Header>
-      <Products products={products}></Products>
-      <Basket products={products}></Basket>
+      <Products products={products} addToCart={addToCart}></Products>
+      <Basket products={products} cart={cart}></Basket>
     </div>
   );
 }
